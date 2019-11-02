@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index');
+
+Route::get('recipes', 'RecipeController@index');
+Route::get('recipes/add', 'RecipeController@add');
+Route::post('recipes/save', 'RecipeController@save');
+Route::get('recipes/details/{id}', 'RecipeController@details');
+
+Route::get('ingredients', 'IngredientController@index');
+Route::get('ingredients/add', 'IngredientController@add');
+Route::post('ingredients/save', 'IngredientController@save');
+Route::get('ingredients/details/{id}', 'IngredientController@details');
