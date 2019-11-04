@@ -11,25 +11,34 @@ class RecipeController extends Controller
     {
         $recipes = Recipe::all();
 
-        return view('recipes/index', compact('recipes'));
+        return view('recipes.index', compact('recipes'));
     }
 
-    public function add()
+    public function create()
     {
-        return view('recipes/form');
+        return view('recipes.form');
     }
 
-    public function details($id)
+    public function store(Request $request)
     {
-        return view('recipes/form', compact('id'));
     }
 
-    public function save()
+    public function show(Recipe $recipe)
+    {
+        return view('recipes.form', compact('recipe'));
+    }
+
+    public function edit(Recipe $recipe)
     {
 
     }
 
-    public function delete()
+    public function update(Request $request, Recipe $recipe)
+    {
+
+    }
+
+    public function destroy(Recipe $recipe)
     {
 
     }

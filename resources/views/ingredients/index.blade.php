@@ -5,21 +5,19 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">#</th>
                 <th scope="col">Titel</th>
-                <th scope="col">Recepten</th>
-                <th scope="col">Aangemaakt op</th>
-                <th scope="col">Laatst gewijzigd</th>
+                <th class="text-center" scope="col">Recepten</th>
+                <th class="text-right" scope="col">Laatst gewijzigd</th>
             </tr>
             </thead>
             <tbody>
             @foreach($ingredients as $ingredient)
                 <tr>
-                    <td>{{ $ingredient->id }}</td>
-                    <td><a href="{{ URL::to('/recipes/details/' . $ingredient->id) }}">{{ $ingredient->title }}</a></td>
-                    <td>{{ count($ingredient->recipes()) }}</td>
-                    <td>{{ date('F d, Y', strtotime($ingredient->created_at)) }}</td>
-                    <td>{{ date('F d, Y', strtotime($ingredient->updated_at)) }}</td>
+                    <th scope="row">{{ $ingredient->id }}</th>
+                    <td><a href="{{ URL::to('/ingredients/' . $ingredient->id) }}">{{ $ingredient->title }}</a></td>
+                    <td class="text-center">{{ $ingredient->recipes()->count() }}</td>
+                    <td class="text-right">{{ date('F d, Y', strtotime($ingredient->updated_at)) }}</td>
                 </tr>
             @endforeach
             </tbody>

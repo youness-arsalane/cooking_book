@@ -14,11 +14,11 @@
 Route::get('/', 'IndexController@index');
 
 Route::get('recipes', 'RecipeController@index');
-Route::get('recipes/add', 'RecipeController@add');
-Route::post('recipes/save', 'RecipeController@save');
-Route::get('recipes/details/{id}', 'RecipeController@details');
+Route::get('recipes/{recipe}', 'RecipeController@show');
+Route::get('recipes/{recipe}/edit', 'RecipeController@edit');
+Route::post('recipes/{recipe}', 'RecipeController@update');
 
 Route::get('ingredients', 'IngredientController@index');
-Route::get('ingredients/add', 'IngredientController@add');
-Route::post('ingredients/save', 'IngredientController@save');
-Route::get('ingredients/details/{id}', 'IngredientController@details');
+Route::get('ingredients/{ingredient}', 'IngredientController@show');
+Route::get('ingredients/{ingredient}/edit', 'IngredientController@edit');
+Route::post('ingredients/{ingredient}', 'IngredientController@update');

@@ -11,25 +11,34 @@ class IngredientController extends Controller
     {
         $ingredients = Ingredient::all();
 
-        return view('ingredients/index', compact('ingredients'));
+        return view('ingredients.index', compact('ingredients'));
     }
 
-    public function add()
+    public function create()
     {
-        return view('ingredients/form');
+        return view('ingredients.form');
     }
 
-    public function details($id)
+    public function store(Request $request)
     {
-        return view('ingredients/form', compact('id'));
     }
 
-    public function save()
+    public function show(Ingredient $ingredient)
+    {
+        return view('ingredients.form', compact('ingredient'));
+    }
+
+    public function edit(Ingredient $ingredient)
     {
 
     }
 
-    public function delete()
+    public function update(Request $request, Ingredient $ingredient)
+    {
+
+    }
+
+    public function destroy(Ingredient $ingredient)
     {
 
     }
