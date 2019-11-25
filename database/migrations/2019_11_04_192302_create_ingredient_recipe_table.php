@@ -17,7 +17,8 @@ class CreateIngredientRecipeTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ingredient_id');
             $table->unsignedBigInteger('recipe_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
 
             $table->unique(['ingredient_id', 'recipe_id']);
             $table

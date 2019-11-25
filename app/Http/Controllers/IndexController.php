@@ -6,6 +6,6 @@ class IndexController
 {
     public function index()
     {
-        return view('welcome');
+        return view('index');
     }
 }
