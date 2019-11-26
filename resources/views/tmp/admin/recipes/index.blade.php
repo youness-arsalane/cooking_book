@@ -16,7 +16,7 @@
             @foreach($recipes as $recipe)
                 <tr>
                     <th scope="row">{{ $recipe->id }}</th>
-                    <td><a href="{{ URL::to('/recipes/' . $recipe->id) }}">{{ $recipe->title }}</a></td>
+                    <td><a href="{{ URL::to('recipes/' . $recipe->id) }}">{{ $recipe->title }}</a></td>
                     <td class="text-center">{{ $recipe->ingredients()->count() }}</td>
                     <td class="text-right">{{ date('F d, Y', strtotime($recipe->updated_at)) }}</td>
                 </tr>

@@ -16,7 +16,7 @@
                     <tbody>
                     @foreach($recipes as $recipe)
                         <tr>
-                            <td><a href="{{ URL::to('/recipes/' . $recipe->id) }}">{{ $recipe->title }}</a></td>
+                            <td><a href="{{ URL::to('recipes/' . $recipe->id) }}">{{ $recipe->title }}</a></td>
                             <td class="text-center">{{ $recipe->steps()->count() }}</td>
                             <td class="text-center">{{ $recipe->ingredients()->count() }}</td>
                         </tr>

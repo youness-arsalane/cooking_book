@@ -16,7 +16,7 @@
                 voluptatem!</p>
         </div>
         <div class="col-lg-6">
-            <img src="{{ URL::to('/images/dish1.jpeg') }}" alt="" class="w-100">
+            <img src="{{ URL::to('images/dish1.jpeg') }}" alt="" class="w-100">
         </div>
     </div>
 @endsection

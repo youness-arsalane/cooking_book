@@ -19,6 +19,12 @@ class Recipe extends Model
 
     public function imageURL()
     {
-        return (!empty($this->image_name)) ? URL::to('/images/recipes') . '/' . $this->id . '/' . $this->image_name : '';
+        return (!empty($this->image_name)) ? URL::to('images/recipes') . '/' . $this->id . '/' . $this->image_name : '';
+    }
+
+    public function save(array $options = [])
+    {
+        $this->updated_at = (new \DateTime())->format('Y-m-d H:i:s');
+        return parent::save($options);
     }
 }

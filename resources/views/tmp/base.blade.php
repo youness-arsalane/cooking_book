@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <title>Kookboek - @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ URL::to('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 </head>
 <body class="d-flex flex-column">
 
@@ -16,13 +16,13 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <a class="navbar-brand" href="{{ URL::to('/') }}">Home</a>
+            <a class="navbar-brand" href="{{ URL::to('') }}">Home</a>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ Request::path() === 'recipes' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ URL::to('/recipes') }}">Recepten</a>
+                    <a class="nav-link" href="{{ URL::to('recipes') }}">Recepten</a>
                 </li>
                 <li class="nav-item {{ Request::path() === 'ingredients' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ URL::to('/admin/ingredients') }}">Ingrediënten</a>
+                    <a class="nav-link" href="{{ URL::to('admin/ingredients') }}">Ingrediënten</a>
                 </li>
             </ul>
         </div>

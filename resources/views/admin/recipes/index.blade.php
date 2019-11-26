@@ -4,7 +4,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <a href="{{ URL::to('/admin/recipes/create') }}" class="btn btn-outline-dark float-right ml-2 mb-3">
+            <h1 class="float-left">Recepten</h1>
+            <a href="{{ URL::to('admin/recipes/create') }}" class="btn btn-outline-dark float-right ml-2 mb-3">
                 <i class="fas fa-plus"></i>&nbsp;Recept toevoegen
             </a>
         </div>
@@ -26,7 +27,7 @@
                     @foreach($recipes as $recipe)
                         <tr>
                             <th scope="row">{{ $recipe->id }}</th>
-                            <td><a href="{{ URL::to('/admin/recipes/' . $recipe->id . '/edit') }}">{{ $recipe->title }}</a></td>
+                            <td><a href="{{ URL::to('admin/recipes/' . $recipe->id . '/edit') }}">{{ $recipe->title }}</a></td>
                             <td class="text-center">{{ $recipe->steps()->count() }}</td>
                             <td class="text-center">{{ $recipe->ingredients()->count() }}</td>
                             <td class="text-right">

@@ -6,26 +6,29 @@
     <meta name="description" content="">
     <title>Kookboek - @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ URL::to('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 </head>
 <body class="d-flex flex-column">
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <a class="navbar-brand" href="{{ URL::to('/admin/') }}">Home</a>
+            <i class="navbar-brand fa fa-book"></i>
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item {{ Request::path() === 'admin' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ URL::to('admin') }}">Home</a>
+                </li>
                 <li class="nav-item {{ Request::path() === 'admin/recipes' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ URL::to('/admin/recipes') }}">Recepten</a>
+                    <a class="nav-link" href="{{ URL::to('admin/recipes') }}">Recepten</a>
                 </li>
                 <li class="nav-item {{ Request::path() === 'admin/ingredients' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ URL::to('/admin/ingredients') }}">Ingrediënten</a>
+                    <a class="nav-link" href="{{ URL::to('admin/ingredients') }}">Ingrediënten</a>
                 </li>
             </ul>
-            <a class="navbar-text" href="{{ URL::to('/admin/logout') }}">Uitloggen</a>
+            <a class="navbar-text" href="{{ URL::to('admin/logout') }}">Uitloggen</a>
         </div>
     </nav>
 </header>
@@ -46,8 +49,8 @@
     </div>
 </footer>
 
-<script src="{{ URL::to('/js/app.js') }}" charset="utf-8"></script>
-<link rel="stylesheet" href="{{ URL::to('/fonts/fontawesome/css/all.min.css') }}">
+<script src="{{ URL::to('js/app.js') }}" charset="utf-8"></script>
+<link rel="stylesheet" href="{{ URL::to('fonts/fontawesome/css/all.min.css') }}">
 
 </body>
 </html>

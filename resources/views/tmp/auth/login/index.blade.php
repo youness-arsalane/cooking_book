@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <title>CookingBook B.V. - @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ URL::to('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 </head>
 <body class="d-flex flex-column">
 
@@ -28,7 +28,7 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <form action="{{ URL::to('/login') }}" method="post">
+                                <form action="{{ URL::to('login') }}" method="post">
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="email" id="email" title="Gebruikersnaam" placeholder="Gebruikersnaam">
@@ -55,7 +55,7 @@
     </div>
 </footer>
 
-<script src="{{ URL::to('/js/app.js') }}" charset="utf-8"></script>
+<script src="{{ URL::to('js/app.js') }}" charset="utf-8"></script>
 
 </body>
 </html>

@@ -6,20 +6,20 @@
     <meta name="description" content="">
     <title>CookingBook B.V.</title>
 
-    <link rel="stylesheet" href="{{ URL::to('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 </head>
 <body class="d-flex flex-column">
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-custom-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <a class="navbar-brand" href="{{ URL::to('/') }}">Home</a>
+            <a class="navbar-brand" href="{{ URL::to('') }}">Home</a>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ Request::path() === 'recipes' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ URL::to('/recipes') }}">Recepten</a>
+                    <a class="nav-link" href="{{ URL::to('recipes') }}">Recepten</a>
                 </li>
             </ul>
         </div>
@@ -42,7 +42,7 @@
     </div>
 </footer>
 
-<script src="{{ URL::to('/js/app.js') }}" charset="utf-8"></script>
+<script src="{{ URL::to('js/app.js') }}" charset="utf-8"></script>
 
 </body>
 </html>

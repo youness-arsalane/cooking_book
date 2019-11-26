@@ -16,7 +16,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach($recipe->ingredients()->get() as $ingredient)
                             <li class="list-group-item">
-                                <a href="{{ URL::to('/admin/ingredients/' . $ingredient->id . '/edit') }}">{{ $ingredient->title }}</a>
+                                <a href="{{ URL::to('admin/ingredients/' . $ingredient->id . '/edit') }}">{{ $ingredient->title }}</a>
                             </li>
                         @endforeach
                     </ul>

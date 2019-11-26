@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Recipe;
-use Illuminate\Http\Request;
+use App\Ingredient;
 use App\Http\Controllers\Controller;
 
 class RecipeController extends Controller
@@ -20,44 +20,55 @@ class RecipeController extends Controller
         return view('admin.recipes.form', compact('recipe'));
     }
 
-    public function store(Request $request)
+    public function edit(Recipe $recipe)
     {
-        $this->validate($request, array(
+        $ingredients = Ingredient::all();
+
+        foreach ($ingredients as $key => $ingredient) {
+            foreach ($recipe->ingredients()->get() as $recipeIngredient) {
+                if ($ingredient->id === $recipeIngredient->id) {
+                    unset($ingredients[$key]);
+                    break;
+                }
+            }
+        }
+
+        return view('admin.recipes.form', compact('recipe', 'ingredients'));
+    }
+
+    public function store()
+    {
+        request()->validate(array(
             'title' => 'required',
         ));
 
         $recipe = new Recipe();
-        $recipe->title = $request->get('title');
-        $recipe->description = $request->get('description');
+        $recipe->title = request('title');
+        $recipe->description = request('description');
         $recipe->save();
 
         return redirect('admin/recipes/' . $recipe->id . '/edit');
     }
 
-    public function edit(Recipe $recipe)
+    public function update(Recipe $recipe)
     {
-        return view('admin.recipes.form', compact('recipe'));
-    }
-
-    public function update(Request $request, Recipe $recipe)
-    {
-        $this->validate($request, array(
+        request()->validate([
             'title' => 'required',
-        ));
+        ]);
 
-        $recipe->title = $request->get('title');
-        $recipe->description = $request->get('description');
+        $recipe->title = request('title');
+        $recipe->description = request('description');
         $recipe->save();
 
         return redirect('admin/recipes/' . $recipe->id . '/edit');
     }
 
-    public function saveImage(Request $request, Recipe $recipe)
+    public function saveImage(Recipe $recipe)
     {
         if (!empty(request()->image)) {
-            $this->validate($request, array(
+            request()->validate([
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ));
+            ]);
 
             $imageName = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images/recipes') . '/' . $recipe->id, $imageName);
@@ -69,7 +80,7 @@ class RecipeController extends Controller
         return redirect('admin/recipes/' . $recipe->id . '/edit');
     }
 
-    public function deleteImage(Request $request, Recipe $recipe)
+    public function deleteImage(Recipe $recipe)
     {
         $recipe->image_name = '';
         $recipe->save();
@@ -77,10 +88,21 @@ class RecipeController extends Controller
         return redirect('admin/recipes/' . $recipe->id . '/edit');
     }
 
+    public function addIngredient(Recipe $recipe)
+    {
+        $recipe->ingredients()->attach(request('ingredient_id'));
+        return redirect('admin/recipes/' . $recipe->id . '/edit');
+    }
+
+    public function deleteIngredient(Recipe $recipe, Ingredient $ingredient)
+    {
+        $recipe->ingredients()->detach($ingredient->id);
+        return redirect('admin/recipes/' . $recipe->id . '/edit');
+    }
+
     public function destroy(Recipe $recipe)
     {
         $recipe->delete();
-
         return redirect('admin/recipes');
     }
 }
