@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Recipe;
+use App\NewsItem;
+use App\Ingredient;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return view('admin.index');
+        $recipeCount = Recipe::all()->count();
+        $ingredientCount = Ingredient::all()->count();
+        $newsItemCount = NewsItem::all()->count();
+        return view('admin.index', compact('recipeCount', 'ingredientCount', 'newsItemCount'));
     }
 }

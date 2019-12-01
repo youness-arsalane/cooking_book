@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Recipe;
 use App\Ingredient;
 use App\Http\Controllers\Controller;
+use Illuminate\Filesystem\Filesystem;
 
 class IngredientController extends Controller
 {
@@ -57,6 +58,9 @@ class IngredientController extends Controller
                 'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
 
+            $file = new Filesystem();
+            $file->cleanDirectory('images/ingredients/' . $ingredient->id);
+
             $imageName = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images/ingredients') . '/' . $ingredient->id, $imageName);
 
@@ -74,18 +78,6 @@ class IngredientController extends Controller
 
         return redirect('admin/ingredients/' . $ingredient->id . '/edit');
     }
-
-//    public function addRecipe(Ingredient $ingredient)
-//    {
-//        $ingredient->recipes()->attach(request('recipe_id'));
-//        return redirect('admin/ingredients/' . $ingredient->id . '/edit');
-//    }
-//
-//    public function deleteRecipe(Ingredient $ingredient, Recipe $recipe)
-//    {
-//        $ingredient->recipes()->detach($recipe->id);
-//        return redirect('admin/ingredients/' . $ingredient->id . '/edit');
-//    }
 
     public function destroy(Ingredient $ingredient)
     {

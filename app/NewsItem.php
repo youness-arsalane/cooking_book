@@ -5,7 +5,7 @@ namespace App;
 use URL;
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredient extends Model
+class NewsItem extends Model
 {
     public function recipes()
     {
@@ -15,7 +15,7 @@ class Ingredient extends Model
     public function imageURL()
     {
         return (!empty($this->image_name))
-            ? URL::to('images/ingredients') . '/' . $this->id . '/' . $this->image_name
+            ? URL::to('images/newsItems') . '/' . $this->id . '/' . $this->image_name
             : URL::to('images/no-image.png');
     }
 

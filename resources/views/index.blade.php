@@ -1,7 +1,10 @@
 @extends ('template')
 
 @section ('content')
-    <h1 class="mb-3 text-center">Welkom bij CookingBook B.V.!</h1>
+    <div class="row">
+        <p class="breadcrumbs">Home</p>
+    </div>
+    <h2 class="mb-3 text-center">Welkom bij CookingBook B.V.!</h2>
     <div class="row">
         <div class="col-lg-6">
             <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda,

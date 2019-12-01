@@ -6,8 +6,8 @@
     <div class="row mb-1">
         <div class="col-12">
             @if(!is_null($ingredient->id))
-                <h2 class="font-weight-normal float-left">Het ingrediënt <b>{{ $ingredient->title }}</b>:</h2>
-                <a href="{{ URL::to('admin/ingredients/' . $ingredient->id . '/destroy/') }}" class="btn btn-danger text-white float-right ml-2">
+                <h2 class="font-weight-normal float-left">Het ingrediënt: <b>{{ $ingredient->title }}</b></h2>
+                <a href="{{ URL::to('admin/ingredients/' . $ingredient->id . '/destroy') }}" class="btn btn-danger text-white float-right ml-2">
                     <i class="fa fa-trash-alt"></i>&nbsp;Verwijderen
                 </a>
             @else
@@ -71,13 +71,11 @@
                     </div>
                 </form>
             </div>
-            <div class="card mt-3 {{ empty($ingredient->id) ? 'd-none' : '' }}">
+            <div class="card mt-4 {{ empty($ingredient->id) ? 'd-none' : '' }}">
                 <form method="post" action="{{ URL::to('admin/ingredients/' . $ingredient->id . '/addRecipe') }}">
                     @csrf
-                    <div class="card-header">
-                        <h6 class="m-0">Recepten</h6>
-                    </div>
-                    <div class="card-body @if ($ingredient->recipes()->count() > 0) p-02 @endif">
+                    <div class="card-header">Recepten</div>
+                    <div class="card-body">
                         @if ($ingredient->recipes()->count() > 0)
                             <ul class="list-group list-group-flush">
                                 @foreach($ingredient->recipes()->get() as $recipe)

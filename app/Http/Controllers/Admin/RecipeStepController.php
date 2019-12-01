@@ -10,17 +10,12 @@ use App\Http\Resources\RecipeStepCollection;
 
 class RecipeStepController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function getJSON(Request $request, Recipe $recipe)
+    public function getJSON(Recipe $recipe)
     {
         return new RecipeStepCollection($recipe->steps()->get());
     }
 
-    public function add(Request $request, Recipe $recipe, $quantity = 1)
+    public function store(Recipe $recipe, $quantity = 1)
     {
         for ($i = 0; $i < $quantity; $i++) {
             $recipeStep = new RecipeStep();
@@ -31,7 +26,7 @@ class RecipeStepController extends Controller
         }
     }
 
-    public function saveAll(Request $request, Recipe $recipe)
+    public function updateAll(Request $request, Recipe $recipe)
     {
         foreach ($request->get('steps') as $stepId => $stepData) {
             $step = RecipeStep::find($stepId);

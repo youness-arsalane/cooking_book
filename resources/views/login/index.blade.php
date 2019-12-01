@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>CookingBook B.V. - @yield('title')</title>
+    <title>CookingBook B.V. - Login</title>
 
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 </head>
@@ -39,6 +39,9 @@
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-dark w-100">Inloggen</button>
                                     </div>
+                                    <div class="form-group m-0">
+                                        <a href="{{ URL::to('/') }}" class="text-dark text-underline"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;terug naar Home</a>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -56,6 +59,7 @@
 </footer>
 
 <script src="{{ URL::to('js/app.js') }}" charset="utf-8"></script>
+<link rel="stylesheet" href="{{ URL::to('fonts/fontawesome/css/all.min.css') }}">
 
 </body>
 </html>

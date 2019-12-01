@@ -9,6 +9,7 @@
 
 html, body {
     height: 100% !important;
+    background-color: #ffffff!important;
 }
 
 main > .container {
@@ -34,10 +35,28 @@ h1 {
 .btn-save {
     padding: 0;
     float: right;
-    //margin-top: -4px;
+    margin-top: -8px;
     font-size: 1.2rem;
 }
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.card {
+    border-radius: 0!important;
+}
+
+.breadcrumbs {
+    color: black;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.breadcrumbs a {
+    color: #85C1E9;
 }

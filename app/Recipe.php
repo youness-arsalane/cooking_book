@@ -12,6 +12,11 @@ class Recipe extends Model
         return $this->belongsToMany(Ingredient::class);
     }
 
+    public function newsItems()
+    {
+        return $this->belongsToMany(NewsItem::class);
+    }
+
     public function steps()
     {
         return $this->hasMany(RecipeStep::class)->orderBy('position');
@@ -19,7 +24,9 @@ class Recipe extends Model
 
     public function imageURL()
     {
-        return (!empty($this->image_name)) ? URL::to('images/recipes') . '/' . $this->id . '/' . $this->image_name : '';
+        return (!empty($this->image_name))
+            ? URL::to('images/recipes') . '/' . $this->id . '/' . $this->image_name
+            : URL::to('images/no-image.png');
     }
 
     public function save(array $options = [])

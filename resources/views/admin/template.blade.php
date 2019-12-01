@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Kookboek - @yield('title')</title>
+    <title>@yield('title') - Kookboek</title>
 
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
 </head>
@@ -19,7 +19,7 @@
             <i class="navbar-brand fa fa-book"></i>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ Request::path() === 'admin' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ URL::to('admin') }}">Home</a>
+                    <a class="nav-link" href="{{ URL::to('admin') }}">Dashboard</a>
                 </li>
                 <li class="nav-item {{ Request::path() === 'admin/recipes' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ URL::to('admin/recipes') }}">Recepten</a>
@@ -27,7 +27,11 @@
                 <li class="nav-item {{ Request::path() === 'admin/ingredients' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ URL::to('admin/ingredients') }}">Ingrediënten</a>
                 </li>
+                <li class="nav-item {{ Request::path() === 'admin/news-items' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ URL::to('admin/news-items') }}">Nieuwsberichten</a>
+                </li>
             </ul>
+            <a class="navbar-text pr-3" href="{{ URL::to('admin/my-profile') }}">Mijn profiel</a>
             <a class="navbar-text" href="{{ URL::to('admin/logout') }}">Uitloggen</a>
         </div>
     </nav>

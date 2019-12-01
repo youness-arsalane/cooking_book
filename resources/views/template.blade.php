@@ -21,7 +21,11 @@
                 <li class="nav-item {{ Request::path() === 'recipes' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ URL::to('recipes') }}">Recepten</a>
                 </li>
+                <li class="nav-item {{ Request::path() === 'news-items' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ URL::to('news-items') }}">Nieuwsberichten</a>
+                </li>
             </ul>
+            <a class="navbar-text" href="{{ URL::to('admin/login') }}">Inloggen</a>
         </div>
     </nav>
 </header>
@@ -43,6 +47,7 @@
 </footer>
 
 <script src="{{ URL::to('js/app.js') }}" charset="utf-8"></script>
+<link rel="stylesheet" href="{{ URL::to('fonts/fontawesome/css/all.min.css') }}">
 
 </body>
 </html>

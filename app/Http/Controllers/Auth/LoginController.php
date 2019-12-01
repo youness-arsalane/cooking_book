@@ -43,30 +43,4 @@ class LoginController extends Controller
     {
         return view('login.index');
     }
-
-    public function checkLogin(Request $request)
-    {
-        $this->validate($request, array(
-            'email' => 'required|email',
-            'password' => 'required'
-        ));
-
-        $userData = array(
-            'email' => $request->get('email'),
-            'password' => $request->get('password')
-        );
-
-        if (Auth::attempt($userData)) {
-
-        } else {
-
-        }
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        return redirect('/');
-    }
 }

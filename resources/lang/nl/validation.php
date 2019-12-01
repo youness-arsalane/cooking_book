@@ -104,7 +104,12 @@ return [
 
     'attributes' => [
         'title' => 'titel',
-        'description' => 'beschrijving'
+        'description' => 'beschrijving',
+        'new-password' => 'nieuwe wachtwoord',
+        'new-password-repeat' => 'herhaal nieuwe wachtwoord',
+        'first_name' => 'voornaam',
+        'last_name' => 'achternaam',
+        'email' => 'e-mailadres',
     ]
 
 ];

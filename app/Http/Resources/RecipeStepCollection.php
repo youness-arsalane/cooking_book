@@ -16,11 +16,5 @@ class RecipeStepCollection extends ResourceCollection
     public function toArray($request)
     {
         return parent::toArray($request);
-//        return array(
-//            'id' => $this->id,
-//            'recipe_id' => $this->recipe_id,
-//            'description' => $this->description,
-//            'position' => $this->position
-//        );
     }
 }

@@ -16,22 +16,29 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Titel</th>
                         <th class="text-center" scope="col">Stappen</th>
                         <th class="text-center" scope="col">Ingrediënten</th>
                         <th class="text-right" scope="col">Laatst gewijzigd</th>
+                        <th class="text-right" scope="col">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($recipes as $recipe)
                         <tr>
-                            <th scope="row">{{ $recipe->id }}</th>
                             <td><a href="{{ URL::to('admin/recipes/' . $recipe->id . '/edit') }}">{{ $recipe->title }}</a></td>
                             <td class="text-center">{{ $recipe->steps()->count() }}</td>
                             <td class="text-center">{{ $recipe->ingredients()->count() }}</td>
                             <td class="text-right">
-                                {{ date('M d, Y', strtotime($recipe->updated_at)) }} <small class="font-weight-bold">{{ date('H:i', strtotime($recipe->updated_at)) }}</small>
+                                {{ $recipe->updated_at->format('M d, Y') }} <small class="font-weight-bold">{{ date('H:i', strtotime($recipe->updated_at)) }}</small>
+                            </td>
+                            <td class="text-right">
+                                <a href="{{ URL::to('admin/recipes/' . $recipe->id . '/edit') }}">
+                                    <i class="fa fa-edit text-secondary" style="font-size: 1rem"></i>
+                                </a>
+                                <a href="{{ URL::to('admin/recipes/' . $recipe->id . '/destroy') }}">
+                                    <i class="fa fa-trash-alt text-danger" style="font-size: 1rem"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

@@ -6,8 +6,8 @@
     <div class="row mb-1">
         <div class="col-12">
             @if(!is_null($recipe->id))
-                <h2 class="font-weight-normal float-left">Het recept <b>{{ $recipe->title }}</b>:</h2>
-                <a href="{{ URL::to('admin/recipes/' . $recipe->id . '/destroy/') }}" class="btn btn-danger text-white float-right ml-2">
+                <h2 class="font-weight-normal float-left">Het recept: <b>{{ $recipe->title }}</b></h2>
+                <a href="{{ URL::to('admin/recipes/' . $recipe->id . '/destroy') }}" class="btn btn-danger text-white float-right ml-2">
                     <i class="fa fa-trash-alt"></i>&nbsp;Verwijderen
                 </a>
             @else
@@ -47,13 +47,13 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Beschrijving:</label>
-                            <textarea class="form-control" name="description" id="description" rows="6">{{ $recipe->description }}</textarea>
+                            <textarea class="form-control" name="description" id="description" rows="12">{{ $recipe->description }}</textarea>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="card mt-3 {{ empty($recipe->id) ? 'd-none' : '' }}">
-                <form method="post" action="{{ URL::to('admin/recipeSteps/' . $recipe->id . '/saveAll') }}">
+            <div class="card mt-4 {{ empty($recipe->id) ? 'd-none' : '' }}">
+                <form method="post" action="{{ URL::to('admin/recipeSteps/' . $recipe->id . '/updateAll') }}">
                     @csrf
                     <div class="card-header">
                         <h6 class="m-0">
@@ -112,13 +112,11 @@
                     </div>
                 </form>
             </div>
-            <div class="card mt-3 {{ empty($recipe->id) ? 'd-none' : '' }}">
+            <div class="card mt-4 {{ empty($recipe->id) ? 'd-none' : '' }}">
                 <form method="post" action="{{ URL::to('admin/recipes/' . $recipe->id . '/addIngredient') }}">
                     @csrf
-                    <div class="card-header">
-                        <h6 class="m-0">Ingrediënten</h6>
-                    </div>
-                    <div class="card-body @if ($recipe->ingredients()->count() > 0) p-02 @endif">
+                    <div class="card-header">Ingrediënten</div>
+                    <div class="card-body">
                         @if ($recipe->ingredients()->count() > 0)
                             <ul class="list-group list-group-flush">
                                 @foreach($recipe->ingredients()->get() as $ingredient)
@@ -146,6 +144,39 @@
                     </div>
                 </form>
             </div>
+
+            <div class="card mt-4 {{ empty($recipe->id) ? 'd-none' : '' }}">
+                <form method="post" action="{{ URL::to('admin/recipes/' . $recipe->id . '/addNewsItem') }}">
+                    @csrf
+                    <div class="card-header">Aanbevolen nieuwsberichten</div>
+                    <div class="card-body">
+                        @if ($recipe->newsItems()->count() > 0)
+                            <ul class="list-group list-group-flush">
+                                @foreach($recipe->newsItems()->get() as $newsItem)
+                                    <li class="list-group-item">
+                                        <a href="{{ URL::to('admin/news-items/' . $newsItem->id . '/edit') }}">{{ $newsItem->title }}</a>
+                                        <a href="{{ URL::to('admin/recipes/deleteNewsItem') . '/' . $recipe->id . '/' . $newsItem->id }}" class="fa fa-trash-alt text-danger float-right"></a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <h6 class="text-center">Er zijn nog geen nieuwsberichten toegevoegd aan dit recept.</h6>
+                        @endif
+
+                        @if (!empty($recipe->id) && !empty($newsItems->all()))
+                            <select class="form-control" name="news_item_id" id="news_item_id" title="Kies een nieuwsbericht">
+                                <option value="" selected disabled>Kies een nieuwsbericht</option>
+                                @foreach ($newsItems->all() as $newsItem)
+                                    <option value="{{ $newsItem->id }}">{{ $newsItem->title }}</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-success mt-3 float-right">Toevoegen</button>
+                            <div class="clearfix"></div>
+                        @endif
+                        <p class="text-muted text-right mt-3 mb-0"><i class="fa fa-plus"></i>&nbsp;Maak <a href="{{ URL::to('admin/news-items') }}">hier</a> nieuwe nieuwsberichten aan.</p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
@@ -170,7 +201,7 @@
         let stepAmounts = (typeof $('#step-amounts').val() !== 'undefined') ? $('#step-amounts').val() : 1;
         $.ajax({
             type: 'POST',
-            url: '{{ URL::to('admin/recipeSteps/add') . '/' . $recipe->id . '/' }}' + stepAmounts,
+            url: '{{ URL::to('admin/recipeSteps/store') . '/' . $recipe->id . '/' }}' + stepAmounts,
             data: {
                 '_token': '{{ @csrf_token() }}'
             }

@@ -1,40 +1,40 @@
 @extends('admin.template')
-@section ('title', 'Ingrediënten')
+@section ('title', 'Nieuwsberichten')
 
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1 class="float-left">Ingrediënten</h1>
-            <a href="{{ URL::to('admin/ingredients/create') }}" class="btn btn-outline-dark float-right ml-2 mb-3">
-                <i class="fas fa-plus"></i>&nbsp;Ingrediënt toevoegen
+            <h1 class="float-left">Nieuwsberichten</h1>
+            <a href="{{ URL::to('admin/news-items/create') }}" class="btn btn-outline-dark float-right ml-2 mb-3">
+                <i class="fas fa-plus"></i>&nbsp;Nieuwsbericht toevoegen
             </a>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            @if(!$ingredients->isEmpty())
+            @if(!$newsItems->isEmpty())
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th scope="col">Titel</th>
-                        <th class="text-center" scope="col">Recepten</th>
+                        <th class="text-center" scope="col">Aanbevolen recepten</th>
                         <th class="text-right" scope="col">Laatst gewijzigd</th>
                         <th class="text-right" scope="col">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($ingredients as $ingredient)
+                    @foreach($newsItems as $newsItem)
                         <tr>
-                            <td><a href="{{ URL::to('admin/ingredients/' . $ingredient->id . '/edit') }}">{{ $ingredient->title }}</a></td>
-                            <td class="text-center">{{ $ingredient->recipes()->count() }}</td>
+                            <td><a href="{{ URL::to('admin/news-items/' . $newsItem->id . '/edit') }}">{{ $newsItem->title }}</a></td>
+                            <td class="text-center">{{ $newsItem->recipes()->count() }}</td>
                             <td class="text-right">
-                                {{ $ingredient->updated_at->format('M d, Y') }} <small class="font-weight-bold">{{ date('H:i', strtotime($ingredient->updated_at)) }}</small>
+                                {{ $newsItem->updated_at->format('M d, Y') }} <small class="font-weight-bold">{{ date('H:i', strtotime($newsItem->updated_at)) }}</small>
                             </td>
                             <td class="text-right">
-                                <a href="{{ URL::to('admin/ingredients/' . $ingredient->id . '/edit') }}">
+                                <a href="{{ URL::to('admin/news-items/' . $newsItem->id . '/edit') }}">
                                     <i class="fa fa-edit text-secondary" style="font-size: 1rem"></i>
                                 </a>
-                                <a href="{{ URL::to('admin/ingredients/' . $ingredient->id . '/destroy') }}">
+                                <a href="{{ URL::to('admin/news-items/' . $newsItem->id . '/destroy') }}">
                                     <i class="fa fa-trash-alt text-danger" style="font-size: 1rem"></i>
                                 </a>
                             </td>
@@ -45,7 +45,7 @@
             @else
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="text-center pt-2">Er zijn nog geen ingrediënten aangemaakt.</h5>
+                        <h5 class="text-center pt-2">Er zijn nog geen nieuwsberichten aangemaakt.</h5>
                     </div>
                 </div>
             @endif
